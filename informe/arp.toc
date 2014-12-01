@@ -1,0 +1,38 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Resumen}{3}
+\contentsline {section}{\numberline {2}Introducci\'on te\'orica}{4}
+\contentsline {subsection}{\numberline {2.1}Matriz Dispersa}{4}
+\contentsline {subsection}{\numberline {2.2}DOK vs CRS vs CSC}{4}
+\contentsline {section}{\numberline {3}Desarrollo}{5}
+\contentsline {subsection}{\numberline {3.1}Page Rank}{5}
+\contentsline {subsection}{\numberline {3.2}HITS}{5}
+\contentsline {subsection}{\numberline {3.3}Indeg}{6}
+\contentsline {section}{\numberline {4}Experimentaci\IeC {\'o}n Y Resultados}{7}
+\contentsline {subsection}{\numberline {4.1}Casos de prueba}{7}
+\contentsline {subsection}{\numberline {4.2}Comparaci\IeC {\'o}n de Normas}{7}
+\contentsline {subsubsection}{\numberline {4.2.1}PageRank}{7}
+\contentsline {subsubsection}{\numberline {4.2.2}HITS}{10}
+\contentsline {subsection}{\numberline {4.3}Comparaci\IeC {\'o}n de Tiempos}{11}
+\contentsline {section}{\numberline {5}Discusi\'on}{12}
+\contentsline {subsection}{\numberline {5.1}PageRank}{12}
+\contentsline {subsection}{\numberline {5.2}HITS}{12}
+\contentsline {subsection}{\numberline {5.3}Ejemplos de comportamiento esperado}{13}
+\contentsline {subsubsection}{\numberline {5.3.1}PageRank}{13}
+\contentsline {subsubsection}{\numberline {5.3.2}HITS}{13}
+\contentsline {subsubsection}{\numberline {5.3.3}Indeg}{14}
+\contentsline {subsection}{\numberline {5.4}An\IeC {\'a}lisis cualitativo}{15}
+\contentsline {subsubsection}{\numberline {5.4.1}PageRank}{15}
+\contentsline {paragraph}{Resultados con un c=0.15}{15}
+\contentsline {paragraph}{Resultados con un c=0.5}{16}
+\contentsline {paragraph}{Resultados con un c=0.85}{16}
+\contentsline {subsubsection}{\numberline {5.4.2}HITS}{17}
+\contentsline {paragraph}{Resultados Hubs}{17}
+\contentsline {paragraph}{Resultados Autoridades}{18}
+\contentsline {subsubsection}{\numberline {5.4.3}Comparaci\IeC {\'o}n}{18}
+\contentsline {section}{\numberline {6}Conclusiones}{19}
+\contentsline {subsection}{\numberline {6.1}PageRank}{19}
+\contentsline {subsection}{\numberline {6.2}HITS}{20}
+\contentsline {subsection}{\numberline {6.3}INDEG}{20}
+\contentsline {subsection}{\numberline {6.4}Mejor estrategia para comprar links}{20}
+\contentsline {subsubsection}{\numberline {6.4.1}PageRank}{20}
+\contentsline {subsubsection}{\numberline {6.4.2}HITS}{22}
