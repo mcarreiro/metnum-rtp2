@@ -1,19 +1,8 @@
 \section{Introducci\'on te\'orica}
 
-\subsection{Norma Manhattan}
-
-A lo largo de esta presentación, utilizaremos la distancia L1 entre dos vectores, también llamada Norma Manhattan.
-La norma Manhattan es la suma de la diferencia coordenada a coordenada en modulo:
-
-\begin{center}
-$\left \| v - w \right \|_{1} = \sum_{i=1}^{n} \left | v_{i} - w_{i} \right |$
-\end{center}
-
-El uso del mismo estará detallado en el desarrollo de cada algoritmo presentado.
-
 \subsection{Algoritmos de búsqueda}
 
-
+Los buscadores web son aquellos sitios que dada una palabra o frase encuentran las páginas que tienen lo que el usuario estaba buscando en una gran cantidad de casos. Ahora, estas búsquedas no son procesos sencillos, es por esto que estaremos analizando 3 algoritmos distintos para realizarlas, PageRank, HITS e Indeg. Descrbiremos la idea teórica de cada uno y  sus implementaciones y analizaremos cualitativa y temporalmente sus resultados. Es decir cuanto tardan en ejecutarse y que tan buenos son los resultados devueltos para distintas búsquedas. Procedamos entonces a explicar la idea de cada uno.
 
 \subsubsection{PageRank}
 
@@ -97,7 +86,7 @@ y & = & Ax, \label{eq:hub-update-math}
 n veces (para un n definido) o hasta obtener un error menor a la tolerencia deseada. El error lo obtenemos calculando la norma manhattan entre el vector obtenido en el paso actual y el previo a este (mas adelante explicaremos como es la norma esta).\\
 Luego de esto nos quedan en cada vector ordenados en el vector $x$ las mejores autoridades y en el $y$ los mejores hubs.
 
-
+Dicho procedimiento debe aplicarse sobre una subred (denominada root-set) que debe calcularse previamente. Para esto mediante algún buscador simple, basado en texto por ejemplo, se acota la red a una determinada cantidad de nodos. Luego se le agregan aquellos que apuntan a algún nodo de dicha sub-red y los apuntados por esta, para finalmente sí, a este root-set aplicarle HITS. En este trabajo supondremos que este acotamiento previo ya fué efectuado.
 
 
 \subsubsection{Indeg}
@@ -106,6 +95,18 @@ A modo de comparación para los experimentos, agregamos este algoritmo que resul
 \begin{center}
 $[k_1/n, k_2/n, ..., k_n/n]\quad 0 \leq k_i \leq n \quad n = cantTotalLinks$
 \end{center}
+
+\subsection{Norma Manhattan}
+
+A lo largo de esta presentación, utilizaremos la distancia L1 entre dos vectores, también llamada Norma Manhattan.
+La norma Manhattan es la suma de la diferencia coordenada a coordenada en modulo:
+
+\begin{center}
+$\left \| v - w \right \|_{1} = \sum_{i=1}^{n} \left | v_{i} - w_{i} \right |$
+\end{center}
+
+El uso del mismo estará detallado en el desarrollo de cada algoritmo presentado.
+
 
 \subsection{Matriz Dispersa}
    Se define como matriz dispersa a aquella a la que la mayoría de sus elementos son cero.
@@ -120,6 +121,7 @@ $[k_1/n, k_2/n, ..., k_n/n]\quad 0 \leq k_i \leq n \quad n = cantTotalLinks$
   a_{40}    &      0    &   0       &   0           &   0    \\
 \end{bmatrix} 
 $$
+
 
 \subsection{DOK vs CRS vs CSC}
     La matriz dispersa al tener la propiedad de tener muy pocos valores no$-$cero es conveniente solo guardar estos y asumir el resto como cero. Existen varias estructuras como Dictionary of Keys (dok), Compressed Sparse Row (CSR) o Compressed Sparse Column (CSC) pensadas para optimizar el espacio y las operaciones con estas estructuras de datos. En el desarrollo de este TP, utilizamos DOK por facilidad en el uso del mismo. Tanto CSR o CSC se basan en la estructura Yale y se diferencian en como guardan los mismos valores, uno priorizando las columnas y otro las filas respectivamente.\\
