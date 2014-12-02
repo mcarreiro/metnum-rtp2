@@ -71,6 +71,22 @@ Una vez calculado el ranking, se retorna al usuario las $t$ p\'aginas con mayor 
 
 \subsubsection{HITS}
 
+Este algoritmo fué pensado por Kleinberg $[2]$ y su esenscia está en la separación conceptual que hace entre un nodo \textit{autoridad} y uno \textit{Hub}. Vale aclarar que en este caso también entenderemos a un nodo como parte del grafo que modela a la internet y que representa a un sitio web en particular. \\
+Autoridad serían aquellos sitios que tienen mayor importancia dentro de un tema específico y Hubs los que apuntan a estos sitios. En palabras mas terrenales las autoridades serían los que tienen las mejores respuestas y los hubs los que conocen a las mejores autoridades.
+En la práctica se entiende por autoridades a aquellos nodos que son apuntados por una gran cantidad de sitios y por Hubs a los nodos a apuntan a muchos otros. Una web es mejor Autoridad si es apuntada por buenos Hubs y viceversa, un Hub es mejor si apunta a las mejores autoridades.\\
+Para modelarlo computacionalmente pensamos a la red como una matriz $A \in \{0,1\}^{n \times n}$ donde cada fila y columna representan a un nodo y tienen un 1 si el nodo fila apunta al nodo columna o un 0 en caso contrario. Luego Kleinberg nos señala que debemos crear un vector \textit{x} e \textit{y} para agrupar las autoridades y hubs respectivamente. Estos vectores nos dice que los obtengamos tomando un x0 e y0 inciales con todos sus valores 1 y realizando este cálculo:
+
+\begin{eqnarray}
+x & = & A^ty \label{eq:auth-update-math} \\
+y & = & Ax, \label{eq:hub-update-math} 
+\end{eqnarray}
+
+n veces (para un n definido) o hasta obtener un error menor a la tolerencia deseada. El error lo obtenemos calculando la norma manhattan entre el vector obtenido en el paso actual y el previo a este (mas adelante explicaremos como es la norma esta).\\
+Luego de esto nos quedan en cada vector ordenados en el vector $x$ las mejores autoridades y en el $y$ los mejores hubs.
+
+
+
+
 \subsubsection{Indeg}
 A modo de comparación para los experimentos, agregamos este algoritmo que resulta un poco inocente. Supongamos que tenemos una red de páginas, el peso, o importancia, de cada una será el promedio de la cantidad de links existentes en otras páginas del mismo conjunto hacia esta sobre la cantidad de links en total. El cálculo del mismo es lineal en la cantidad de referencias y su complejidad espacial es un vector de tamaño igual que el conjunto inicial de páginas. Este vector final es el resultado.
 
