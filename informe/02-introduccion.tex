@@ -1,6 +1,19 @@
 \section{Introducci\'on te\'orica}
 
+\subsection{Norma Manhattan}
+
+A lo largo de esta presentación, utilizaremos la distancia L1 entre dos vectores, también llamada Norma Manhattan.
+La norma Manhattan es la suma de la diferencia coordenada a coordenada en modulo:
+
+\begin{center}
+$\left \| v - w \right \|_{1} = \sum_{i=1}^{n} \left | v_{i} - w_{i} \right |$
+\end{center}
+
+El uso del mismo estará detallado en el desarrollo de cada algoritmo presentado.
+
 \subsection{Algoritmos de búsqueda}
+
+
 
 \subsubsection{PageRank}
 
@@ -89,6 +102,10 @@ Luego de esto nos quedan en cada vector ordenados en el vector $x$ las mejores a
 
 \subsubsection{Indeg}
 A modo de comparación para los experimentos, agregamos este algoritmo que resulta un poco inocente. Supongamos que tenemos una red de páginas, el peso, o importancia, de cada una será el promedio de la cantidad de links existentes en otras páginas del mismo conjunto hacia esta sobre la cantidad de links en total. El cálculo del mismo es lineal en la cantidad de referencias y su complejidad espacial es un vector de tamaño igual que el conjunto inicial de páginas. Este vector final es el resultado.
+
+\begin{center}
+$[k_1/n, k_2/n, ..., k_n/n]\quad 0 \leq k_i \leq n \quad n = cantTotalLinks$
+\end{center}
 
 \subsection{Matriz Dispersa}
    Se define como matriz dispersa a aquella a la que la mayoría de sus elementos son cero.
