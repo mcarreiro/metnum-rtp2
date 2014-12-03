@@ -2,7 +2,7 @@
 
 \subsection{Algoritmos de búsqueda}
 
-Los buscadores web son aquellos sitios que dada una palabra o frase encuentran las páginas que tienen lo que el usuario estaba buscando en una gran cantidad de casos. Ahora, estas búsquedas no son procesos sencillos, es por esto que estaremos analizando 3 algoritmos distintos para realizarlas, PageRank, HITS e Indeg. Descrbiremos la idea teórica de cada uno y  sus implementaciones y analizaremos cualitativa y temporalmente sus resultados. Es decir cuanto tardan en ejecutarse y que tan buenos son los resultados devueltos para distintas búsquedas. Procedamos entonces a explicar la idea de cada uno.
+Los buscadores web son aquellos sitios que dada una palabra o frase encuentran las páginas que tienen lo que el usuario estaba buscando en una gran cantidad de casos. El secreto del éxito de estos buscadores no es sólo que encuentran la palabra o frase sino que encuentran el mejor resultado para esta. Esto lo hace mediante métodos de rankeo que no son sencillos, es por esto que estaremos analizando 3 algoritmos distintos para realizarlos, PageRank, HITS e Indeg. Descrbiremos la idea teórica de cada uno, sus implementaciones y analizaremos cualitativa y temporalmente sus resultados. Es decir cuanto tardan en ejecutarse y que tan buenos son los resultados devueltos para distintas búsquedas. Procedamos entonces a explicar la idea de cada uno.
 
 \subsubsection{PageRank}
 
@@ -69,13 +69,13 @@ $$
 
 
 \subsection{DOK vs CRS vs CSC}
-    La matriz dispersa al tener la propiedad de tener muy pocos valores no$-$cero es conveniente solo guardar estos y asumir el resto como cero. Existen varias estructuras como Dictionary of Keys (dok), Compressed Sparse Row (CSR) o Compressed Sparse Column (CSC) pensadas para optimizar el espacio y las operaciones con estas estructuras de datos. En el desarrollo de este TP, utilizamos DOK por facilidad en el uso del mismo. Tanto CSR o CSC se basan en la estructura Yale y se diferencian en como guardan los mismos valores, uno priorizando las columnas y otro las filas respectivamente.\\
+    La matriz dispersa al tener la propiedad de tener muy pocos valores no$-$cero es conveniente solo guardar estos y asumir el resto como cero. Existen varias estructuras como Dictionary of Keys (dok), Compressed Sparse Row (CSR) o Compressed Sparse Column (CSC) pensadas para optimizar el espacio y las operaciones con estas estructuras de datos. En el desarrollo de este TP, utilizamos DOK por facilidad en el uso del mismo. Tanto CSR o CSC se basan en la estructura Yale y se diferencian en como guardan los mismos valores, uno priorizando las filas y otro las columnas respectivamente.\\
     La estructura Yale consiste en a partir de la matriz original obtener tres vectores que contengan 
     \begin{itemize}
         \item A = los elementos no$-$cero de arriba-abajo,izquierda-derecha
         \item IA = los indices para cada fila i del primer elemento no-cero de dicha fila
         \item JA = los indices de columna para cada valor de A
     \end{itemize}
-    Si bien en caso de que haya en una fila con muchos números no-ceros es más beneficioso la utilización de esta estructura, la facilidad con DOK permite hacer pruebas más rápido.Y nos pareció poco práctico ponernos a implementar todas las lógicas requeridas para la eliminación o agregación de nuevos datos en estas estructuras ya que no hacían a la escencia del TP y complejizaban el código y el debagueo durante las pruebas y el desarrollo. Consideramos que la optimización otorgada por DOK es suficiente para el tipo de análisis que deseamos hacer sobre los algoritmos de rankeo solicitados
+    Si bien el caso de que haya una fila con muchos números no-ceros es más beneficiosa la utilización de esta estructura, la facilidad con DOK permite hacer pruebas más rápido.Y nos pareció poco práctico ponernos a implementar todas las lógicas requeridas para la eliminación o agregación de nuevos datos en estas estructuras ya que no hacían a la escencia del TP y complejizaban el código y el debagueo durante las pruebas y el desarrollo. Consideramos que la optimización otorgada por DOK es suficiente para el tipo de análisis que deseamos hacer sobre los algoritmos de rankeo solicitados
 
 
