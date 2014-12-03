@@ -26,7 +26,7 @@
 
 La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los vectores de la iteración anterior y la del actual sea cero(o a un valor relativamente cerca, esta cercanía estará dada por una tolerancia que para los casos presentados son cero). Es ahí cuando tendremos la respuesta final.\\
 Para evaluar el comportamiento de la norma manhattan variaremos la probabilidad del navegante aleatorio, el cual de ahora en más lo denotaremos como el parámetro \textbf{c}.\\
-A continuación se muestran los resultados para cuatro tests de como evoluciona la norma a lo largo de las iteraciones y como varía la misma con distintos c, y que luego discutiremos más adelante.
+A continuación se muestran los resultados de como evoluciona la norma a lo largo de las iteraciones y como varía la misma con distintos c, y que luego discutiremos más adelante.
 Cabe aclarar que expresamos los valores de la norma en escala logarítmica para una mejor visualización y para que se obtenga un mejor entendimiento de como disminuye de a varias magnitudes en cada iteración.
 
 
@@ -37,7 +37,7 @@ Cabe aclarar que expresamos los valores de la norma en escala logarítmica para 
        % \end{center}
 % \end{figure}
 
-\begin{figure}
+\begin{figure}[!htb]
 \begin{center}
     % \includegraphics[scale=0.5]{imagenes/pagerank_google_norma.png}
   \includegraphics[scale=0.5]{imagenes/pagerank_stanford_norma.png}
@@ -54,31 +54,42 @@ La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los ve
 Al igual que el algoritmo anterior utilizamos una tolerancia igual a cero.
 
 A continuación se muestran los resultados para cuatro instancias distintas, una medianas y una grande, de como evoluciona la norma a lo largo de las iteraciones en ambos vectores :
-\begin{figure}[!htb]
-\begin{center}
-       \includegraphics[scale=0.5]{imagenes/hits-abortion-expanded.png}
-       \caption{Abortion expanded }
-  \end{center}
-\end{figure}
-\begin{figure}[!htb]
-\begin{center}
-        \includegraphics[scale=0.5]{imagenes/hits-genetic-expanded.png}
-       \caption{Genetic expanded }
-       \end{center}
-\end{figure}
 
 \begin{figure}[!htb]
-\begin{center}
-    \includegraphics[scale=0.5]{imagenes/hits-movie.png}
+% \begin{center}
+\begin{subfigure}{.5\textwidth}
+       \includegraphics[scale=0.4]{imagenes/hits-abortion-expanded.png}
+       \caption{Abortion expanded }
+\end{subfigure}
+  % \end{center}
+% \end{figure}
+% \begin{figure}
+% \begin{center}
+\begin{subfigure}{.5\textwidth}
+        \includegraphics[scale=0.4]{imagenes/hits-genetic-expanded.png}
+       \caption{Genetic expanded }
+\end{subfigure}
+       % \end{center}
+% \end{figure}
+
+% \begin{figure}[!htb]
+% \begin{center}
+\begin{subfigure}{.5\textwidth}
+    \includegraphics[scale=0.4]{imagenes/hits-movie.png}
     \caption{Movies expanded }
-  \end{center}
-\end{figure}
-\begin{figure}[!htb]
-\begin{center}
-    \includegraphics[scale=0.5]{imagenes/hits-stadfor.png}
+\end{subfigure}
+  % \end{center}
+% \end{figure}
+% \begin{figure}[!htb]
+% \begin{center}
+\begin{subfigure}{.5\textwidth}
+    \includegraphics[scale=0.4]{imagenes/hits-stadfor.png}
     \caption{Standford}
-    \end{center}
+\end{subfigure}
+    % \end{center}
 \end{figure}
+
+\newpage
 
 \subsection{Comparación de Tiempos}
 
