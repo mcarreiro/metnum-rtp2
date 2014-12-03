@@ -12,7 +12,7 @@
 
 
 \subsection{Casos de prueba}
-   A continuación se listarán los casos utilizados y después se compararán los resultados.
+   A continuación se listarán los casos utilizados en las experimentaciones para mayor comprensión de los casos.
 
 	\begin{itemize}
 		\item MOVIES: Este caso incluye 5797 páginas
@@ -24,7 +24,7 @@
 
 \subsection{Convergencia de Page Rank} 
 
-La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los vectores de la iteración anterior y la del actual sean cero(o a un valor relativamente cerca). Es ahí cuando tendremos la respuesta final.\\
+La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los vectores de la iteración anterior y la del actual sea cero(o a un valor relativamente cerca, esta cercanía estará dada por una tolerancia que para los casos presentados son cero). Es ahí cuando tendremos la respuesta final.\\
 Para evaluar el comportamiento de la norma manhattan variaremos la probabilidad del navegante aleatorio, el cual de ahora en más lo denotaremos como el parámetro \textbf{c}.\\
 A continuación se muestran los resultados para cuatro tests de como evoluciona la norma a lo largo de las iteraciones y como varía la misma con distintos c, y que luego discutiremos más adelante.
 Cabe aclarar que expresamos los valores de la norma en escala logarítmica para una mejor visualización y para que se obtenga un mejor entendimiento de como disminuye de a varias magnitudes en cada iteración.
@@ -44,19 +44,16 @@ Cabe aclarar que expresamos los valores de la norma en escala logarítmica para 
     \end{center}
 \end{figure}
 
-
+De los casos de prueba presentados, agregamos solo este ya que el resto de los resultados eran iguales. Claramente notamos que la convergencia se retrasa más a medida que se agranda el c. 
 
 \FloatBarrier
 
+\subsection {Convergencia de HITS}
 
+La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los vectores x e y (que contienen el puntaje de los sitios de autoridad y los de hubs respectivamente) comparados con los de la iteración anterior sea cero para alguno de los dos(o a un valor relativamente cerca). Es ahí cuando tendremos la respuesta final.\\
+Al igual que el algoritmo anterior utilizamos una tolerancia igual a cero.
 
-
-\subsubsection {HITS}
-
-
-Estas corridas se hicieron para k= 100 ya que con esto alcanzaba para analizar los compartamientos deseados. La tolerancia en todos los casos fue de 0 ya que nos pareció mas interesante ver que tanto converge mas allá de que para nosotros una divergencia de 0.00001 ya es despreciable.
-
-A continuación se muestran los resultados para cuatro instancias distintas, 3 medianas y una grande, de como evoluciona la norma a lo largo de las iteraciones en ambos vectores :
+A continuación se muestran los resultados para cuatro instancias distintas, una medianas y una grande, de como evoluciona la norma a lo largo de las iteraciones en ambos vectores :
 \begin{figure}[!htb]
 \begin{center}
        \includegraphics[scale=0.5]{imagenes/hits-abortion-expanded.png}
