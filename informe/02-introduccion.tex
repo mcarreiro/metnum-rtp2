@@ -6,70 +6,15 @@ Los buscadores web son aquellos sitios que dada una palabra o frase encuentran l
 
 \subsubsection{PageRank}
 
-El algoritmo de búsqueda llamado \textbf{PageRank} lo desarrollaron los fundadores de Google, Page y Brin, 
-
-El algoritmo PageRank se basa en la construcci\'on del siguiente modelo. Supongamos que tenemos una red con $n$ p\'aginas 
-web $Web = \{1,\dots,n\}$ donde
-el objetivo es asignar a cada una de ellas un puntaje que determine la importancia relativa de la misma respecto de las
-dem\'as. Para modelar las relaciones entre ellas, definimos la \emph{matriz de conectividad} $W \in \{0,1\}^{n \times n}$ 
-de forma tal que $w_{ij} = 1$ si la p\'agina $j$ tiene un link a la p\'agina $i$, y $w_{ij} = 0$ en caso contrario. 
-Adem\'as, ignoramos los \emph{autolinks}, es decir, links de una p\'agina a s\'i misma, definiendo $w_{ii} = 0$. Tomando 
-esta matriz, definimos el grado de la p\'agina $j$, $n_j$, como la cantidad de links salientes hacia otras p\'aginas 
-de la red, donde $n_j = \sum_{i = 1}^n w_{ij}$. Adem\'as, notamos con $x_j$ al puntaje asignado a la p\'agina $j\in
-Web$, que es lo que buscamos calcular.
-
-La importancia de una p\'agina puede ser modelada de diferentes formas. Un link de la p\'agina $u \in
-Web$ a la p\'agina $v \in Web$ puede ser visto como que $v$ es una p\'agina importante. Sin embargo, no queremos que una
-p\'agina obtenga mayor importancia simplemente porque es apuntada desde muchas p\'aginas. 
-Una forma de limitar esto es ponderar los links utilizando la importancia de la p\'agina de origen. En otras palabras,
-pocos links de p\'aginas importantes pueden valer m\'as que muchos links de p\'aginas poco importantes. En particular,
-consideramos que la importancia de la p\'agina $v$ obtenida mediante el link de la p\'agina $u$ es proporcional a la 
-importancia de la p\'agina $u$ e inversamente proporcional al grado de $u$. Si la p\'agina $u$ contiene $n_u$ links,
-uno de los cuales apunta a la p\'agina $v$, entonces el aporte de ese link a la p\'agina $v$ ser\'a $x_u/n_u$. Luego,
-sea $L_k \subseteq Web$ el conjunto de p\'aginas que tienen un link a la p\'agina $k$. Para cada p\'agina pedimos que
-\begin{eqnarray}
-x_k = \sum_{j \in L_k} \frac{x_j}{n_j},~~~~k = 1,\dots,n. \label{eq:basicmodel}
-\end{eqnarray}
-Definimos $P \in  \mathbb{R}^{n \times n}$ tal que $p_{ij} = 1/n_j$ si $w_{ij} = 1$, y $p_{ij} = 0$ en caso contrario. Luego,
-el modelo planteado en (\ref{eq:basicmodel}) es equivalente a encontrar un $x\in \mathbb{R}^n$ tal que $Px = x$, es
-decir, encontrar (suponiendo que existe) un autovector asociado al autovalor 1 de una matriz cuadrada, tal que $x_i \ge
-0$ y $\sum_{i = 1}^n x_i = 1$. En
-Bryan y Leise \cite{Bryan2006} y Kamvar et al. \cite[Secci\'on 1]{Kamvar2003} se analizan ciertas condiciones que debe
-cumplir la red de p\'aginas para garantizar la existencia de este autovector.
-
-Una interpretaci\'on equivalente para el problema es considerar al \emph{navegante aleatorio}. \'Este empieza en una
-p\'agina cualquiera del conjunto, y luego en cada p\'agina $j$ que visita sigue navegando a trav\'es de sus links,
-eligiendo el mismo con probabilidad $1/n_j$. Una situaci\'on particular se da cuando la p\'agina no tiene links salientes. En
-ese caso, consideramos que el navegante aleatorio pasa a cualquiera de las p\'agina de la red con probabilidad $1/n$.
-Para representar esta situaci\'on, definimos $v \in \mathbb{R}^{n \times n}$, con $v_i = 1/n$ y $d \in \{0,1\}^{n}$ donde 
-$d_i = 1$ si $n_i = 0$, y $d_i = 0$ en caso contrario. La nueva matriz de transici\'on es 
-\begin{eqnarray*}
-D & = & v d^t \\
-P_1 & = & P + D.
-\end{eqnarray*}
-Adem\'as, consideraremos el caso de que el navegante aleatorio, dado que se encuentra en la p\'agina $j$, decida visitar
-una p\'agina cualquiera del conjunto, independientemente de si esta se encuentra o no referenciada por $j$ (fen\'omeno
-conocido como \emph{teletransportaci\'on}). Para ello, consideramos que esta decisi\'on se toma con una probabilidad
-$c \ge 0$, y podemos incluirlo al modelo de la siguiente forma:
-\begin{eqnarray*}
-E & = & v \bar{1}^t \\
-P_2 & = & cP_1 + (1-c)E,
-\end{eqnarray*}
-\noindent donde $\bar{1} \in \mathbb{R}^n$ es un vector tal que todas sus componenetes valen 1. La matriz resultante
-$P_2$ corresponde a un enriquecimiento del modelo formulado en (\ref{eq:basicmodel}). Probabil\'isticamente, la
-componente $x_j$ del vector soluci\'on (normalizado) del sistema $P_2 x = x$ representa la proporci\'on del tiempo que,
-en el largo plazo, el navegante aleatorio pasa en la p\'agina $j \in Web$.
-
-En particular, $P_2$ corresponde a una
-matriz \emph{estoc\'astica por columnas} que cumple las hip\'otesis planteadas en Bryan y Leise \cite{Bryan2006} y
-Kamvar et al. \cite{Kamvar2003}, tal que $P_2$ tiene un autovector asociado al autovalor 1, los dem\'as autovalores de
-la matriz cumplen $1 = \lambda_1 > |\lambda_2| \ge \dots \ge |\lambda_n|$ y, adem\'as, la dimensi\'on
-del autoespacio asociado al autovalor $\lambda_1$ es 1. Luego, la soluci\'on al sistema $P_2 x = x$ puede ser calculada
-de forma est\'andar utilizando el m\'etodo de la potencia.
-
-Una vez calculado el ranking, se retorna al usuario las $t$ p\'aginas con mayor ranking.
-
-
+El algoritmo de búsqueda llamado \textbf{PageRank} lo desarrollaron los fundadores de Google, Page y Brin, y fue tan revolucionario que cambió la forma en que se empezó a buscar en la web. \\
+El primer punto de este algoritmo es mirar a la web como un grafo dirigido, donde cada nodo representa un sitio y los vertices van de un nodo a otro si un sitio contiene un link direccionando a este otro.
+A partir de esto se define una \emph{matriz de vínculos} $M$, y como su nombre lo indica, esta representará las conectividades de los sitios pero con la particularidad de que tendrá información acerca de cuanto puntaje le asigna un sitio a otro, es decir, $m_{ij}$ será 1/$G_j$  (siendo $G_j$ el grado de salida del sitio $j$) si $j$ tiene un link a $i$ y 0 en otro caso.
+De esta forma, la importancia de cada sitio esta medida por la calidad de sitios que linkean a cada uno, y a su vez la calidad esta conformada por la cantidad de sitios a los que redirijo, ya que si un sitio redirige a pocos sitios a cada uno estara otorgandole un puntaje cercano al 1, y en caso contrario el puntaje que otorgará sera cercano al 0 y no tendrá mucho peso a la hora de que los sitios de destino obtengan mayor importancia gracias a este.\\
+Facilmente se puede deducir que todas las columnas de la matriz resultante van a sumar 1, por lo que será una matriz \textit{``estocastica por columnas"}. Luego el problema de encontrar el ranking de cada cada sitio es equivalente a encontrar un $x\in \mathbb{R}^n$ tal que $Px = x$, es decir, encontrar (suponiendo que existe) un autovector asociado al autovalor 1 de una matriz cuadrada, tal que $x_i \ge
+0$ y $\sum_{i = 1}^n x_i = 1$. 
+\\
+\\
+Un detalle importante que se debe considerar es que para que el PageRank funcione no puede haber nodos desconectados, ya que de ser así la matriz de vínculos no sería estocastica por columnas debido a que la columna de la matriz que representa a los sitios que linkea estarían todos en 0. Por esta razón es que Bryan y Leise \cite{Bryan2006} muestran una forma 
 
 \subsubsection{HITS}
 
