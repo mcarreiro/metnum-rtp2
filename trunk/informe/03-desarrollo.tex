@@ -15,13 +15,14 @@ Inicializaci\'on:
 \State $\textit{vectorInicial[0] = 1;}$ \Comment{pongo el primer elemento en 1}
 \State $\textit{matriz = DOK(dim);}$ \Comment{la matriz representará al $M_f$}
 \For{$cada\ link\ en\ links$}
-\If{$link\ tiene\ salidas$}
-\For{$cada\ salida\ del\ nodo$}
-\State $\textit{;}$ \Comment{}
-\EndFor
-\Else
-\State $\textit{desconectados.agregar(link);}$ \Comment{}
-\EndIf
+	\If{$link\ tiene\ salidas$}
+		\State $\textit{n = $link.cantSalidas );}$ \Comment{}
+		\For{$cada\ salida\ del\ nodo$}
+			\State $\textit{matriz.definir(salida, link, 1/n );}$ \Comment{}
+		\EndFor
+		\Else
+			\State $\textit{desconectados.agregar(link);}$ \Comment{}
+	\EndIf
 \EndFor
 
 
