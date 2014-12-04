@@ -6,13 +6,27 @@ A continuación detallamos cómo fue el desarrollo de los algoritmos presentados
 El algoritmo de PageRank lo dividimos en dos etapas, primero la inicializaci\'on en donde se crea la matriz estoc\'astica y luego la corrida en donde se itera y calcula el pagerank hasta que la diferencia de norma entre los vectores sea menor que la tolerancia establecida.
 
 Inicializaci\'on:
-\begin{lstlisting}[frame=single]  
-Genero un vector inicial.
-Para cada nodo:
-	- Si tiene salidas, inserto en cada celda de la columna correspondiente de los nodos de salida
-	- Si no, guardo el nodo en el vector de desconectados.
-	
-\end{lstlisting}
+
+
+\begin{algorithm}
+\caption{initialize(c, dim, links)}\label{euclid}
+\begin{algorithmic}[1]
+\State $\textit{vectorInicial = vector(dim, 0);}$ \Comment{creo un vector de dim elementos y lo inicializo en 0}
+\State $\textit{vectorInicial[0] = 1;}$ \Comment{pongo el primer elemento en 1}
+\State $\textit{matriz = DOK(dim);}$ \Comment{la matriz representará al $M_f$}
+\For{$cada\ link\ en\ links$}
+\If{$link\ tiene\ salidas$}
+\For{$cada\ salida\ del\ nodo$}
+\State $\textit{;}$ \Comment{}
+\EndFor
+\Else
+\State $\textit{desconectados.agregar(link);}$ \Comment{}
+\EndIf
+\EndFor
+
+
+\end{algorithmic}
+\end{algorithm}
 
 Calculo del PageRank:
 \begin{lstlisting}[frame=single] 
@@ -26,26 +40,25 @@ Hasta que converja:
 
 
 \subsection{HITS}
-Este también lo dividimos en la etapa en la etapa de iniciaclización y de calculo de sus vectores. En la primera creamos la matriz estocástica e inicializamos los vectores y en la segunda calculamos los mismos hasta que iteremos k veces o la diferencia obtenida sea menor que la tolerancia.
+Este también lo dividimos en la etapa en la etapa de inicialización y de cálculo de sus vectores. En la primera creamos la matriz estocástica e inicializamos los vectores y en la segunda calculamos los mismos hasta que iteremos k veces o la diferencia obtenida sea menor que la tolerancia.
 
-Inicializaci\'on:
-\begin{lstlisting}[frame=single]  
-Creo el Dok vacio
-Para cada arista:
-	defino en el dok el nodo desde y hasta
+%Inicializaci\'on:
+%\begin{lstlisting}[frame=single]  
+%Creo el Dok vacio
+%Para cada arista:
+%	defino en el dok el nodo desde y hasta
+%	
+%Inicio los vectores de hubs y autoridades con todos sus valores en 1 y normalizados
 	
-Inicio los vectores de hubs y autoridades con todos sus valores en 1 y normalizados
-	
-\end{lstlisting}
+%\end{lstlisting}
 
-Cálculo de vectores Hubs y Autoridades
-\begin{lstlisting}[frame=single] 
-Itero de 1 a K
-	Para el vector de hubs multiplico el dok transpuesto por el vector de autoridades y normalizo
-	Para el vector de autoridades multiplicoel dok transpuesto por el vector de hubs y normalizo
-	Si la diferencia entre el nuevo vector de hubs o autoridades con su valor previo es menor a la tolerancia termino la iteracion
-\end{lstlisting}
-
+%Cálculo de vectores Hubs y Autoridades
+%\begin{lstlisting}[frame=single] 
+%Itero de 1 a K
+%	Para el vector de hubs multiplico el dok transpuesto por el vector de autoridades y normalizo
+%	Para el vector de autoridades multiplicoel dok transpuesto por el vector de hubs y normalizo
+%	Si la diferencia entre el nuevo vector de hubs o autoridades con su valor previo es menor a la tolerancia termino la iteracion
+%\end{lstlisting}
 \subsection{Indeg}
 
 La implementación de este algoritmo es bastante simple. Tomamos un vector inicial con ceros del tamaño de las páginas y recorremos todas las referencias de cada página hacia al resto, y por cada una de los sitios a los que visita, le sumamos en 1/cantidadLinksTotal su puntaje en el vector inicial.
