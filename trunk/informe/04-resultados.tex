@@ -46,14 +46,15 @@ Cabe aclarar que expresamos los valores de la norma en escala logarítmica para 
 
 De los casos de prueba presentados, agregamos solo este ya que el resto de los resultados eran iguales. Claramente notamos que la convergencia se retrasa más a medida que se agranda el c. 
 
-\FloatBarrier
+\clearpage
 
 \subsection {Convergencia de HITS}
 
-La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los vectores x e y (que contienen el puntaje de los sitios de autoridad y los de hubs respectivamente) comparados con los de la iteración anterior sea cero para alguno de los dos(o a un valor relativamente cerca). Es ahí cuando tendremos la respuesta final.\\
+La convergencia de dicho algoritmo ocurrirá cuando la norma Manhattan de los vectores x e y (que contienen el puntaje de los sitios de autoridad y los de hubs respectivamente) comparados con los de la iteración anterior 
+sea cero para alguno de los dos(o a un valor relativamente cerca). Es ahí cuando tendremos la respuesta final.\\
 Al igual que el algoritmo anterior utilizamos una tolerancia igual a cero.
 
-A continuación se muestran los resultados para cuatro instancias distintas, una medianas y una grande, de como evoluciona la norma a lo largo de las iteraciones en ambos vectores :
+A continuación se muestran los resultados para cuatro instancias distintas, 3 medianas y una grande, de como evoluciona la norma a lo largo de las iteraciones en ambos vectores :
 
 \begin{figure}[!htb]
 % \begin{center}
@@ -89,7 +90,9 @@ A continuación se muestran los resultados para cuatro instancias distintas, una
     % \end{center}
 \end{figure}
 
-\newpage
+En los últimos dos gráficos podemos observar drásticos descensos del valor de la norma cerca de la iteración 60 en el primero y de la 90 en el segundo. Esto es debido a que el valor de la norma es tan bajo que ya no es medible. Por lo tanto consideraremos que justo antes de esos descensos la norma ya convirgió.
+
+\clearpage
 
 \subsection{Comparación de Tiempos}
 
