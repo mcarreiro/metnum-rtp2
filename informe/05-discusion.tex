@@ -10,8 +10,10 @@ Por otro lado podemos ver que los casos en los que mas drásitca es la convergen
 En estos dos últimos casos además podemos notar grandes saltos de convergencia pasando en pocas iteracion de 1$e^{20}$ a menos de 1$e^{80}$, entiendiendo, aca sí, que la diferencia es totalmente despreciable y el valor obtenido ya ha convergido. De todas formas consideramos que puede ser un punto de interés para analizar mas en profundidad ya que más allá de decir que entendemos de eso, no sabríamos explicar porque se produce ese salto. 
 
 \subsection{Comparación de Tiempos}
-Tanto en PageRank como en Hits notamos tiempos parecidos para instancias chicas pero a medida que crece la cantidad de nodos, el tiempo de Hits crece en forma significativa en comparación a PageRank. Esto no significa que PageRank no esté creciendo pero lo hace en menor medida que Hits y parece notar un tiempo más estable en la cantidad de nodos.
 
+En todos los resultados el tiempo de PageRank fué menor o igual al de HITS. En los primeros dos casos (el de la cátedra y el grafo estrella) fué significativamente menor. En cambio con los grafos random se mantuvieron más cerca aunque también en muchos casos pagerank estuvo por debajo y en ninguno por arriba.\\
+En el caso random podemos ver que el tiempo fluctúa, es decir, no se mantiene en crecimiento constante como el anterior. Esto es porque si bien la cantidad de nodos va creciendo puede no suceder lo mismo con la cantidad de aristas. Además, como dijimos antes, la complejidad algórtimica reside en variables desconocidas por nosotros, por lo que una instancia podría estar resultando muy compleja mientras que una mas grande mucho más simple debido a esto. De todas formas la idea de esta prueba era simplemente poder corrobar de forma mas genérica que el tiempo de cómputo de pageRank es menor al de HITS. Cosa que efectivamente podemos terminar concluyendo.\\
+Finalmente cabe destacar que, como era de esperar, INDEG es la que posee menor tiempo de cómputo de forma significativa en todas las pruebas. Hasta en el caso random las distintas instancias aleatorias lo van haciendo fluctuar muy poco. Como explicamos antes esto se debe a la simplicidad algorítimca que posee.
 
 \subsection{Comportamiento Esperado}
 
@@ -395,7 +397,8 @@ central de recursos sobre litigios en penas de muerte. Por otro lado, las autori
 categorías ya que es totalmente lógico que páginas institucionales sean fuentes propias de información que son citadas por otras (osea autoridades) o que una central de recursos linkee a muchos otros citios (osea un hub).\\
 También es de destacar que ningún link pareciera ser spam, o sobre algo no relacionado.
 
-\subsubsection{Comparación}
+\subsubsection{Comparación de calidad}
 
 Si comparamos los resultados del PageRank con un $C$ alto claramente da mejores respuestas el HITS. Sin embargo en el paper de Bryan y Leise$[3]$ se recomienda un $C$ de 0.15, con este valor los resultados mejoran notoriamente aunque sigue habiendo algunos que no corresponden o son SPAM. 
 Bajo este ejemplo podemos notar que tienen resultadoes muy similares, aunque Page Rank tiene SPAM en su resultado y HITS no. Esto tiene sentido en la medida que el mismo paper de HITS recomienda el uso de su algoritmo en sets chicos y a priori parece tener mejor resultado HITS. Esto a su vez es subjetivo pero nos parece interesante que sitios que parecen representar bien el tema como http://www.deathpenalty.org y http://www.ncadp.org aparecen en ambos resultados.
+
