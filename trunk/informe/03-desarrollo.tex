@@ -55,23 +55,41 @@ Calculo del PageRank:
 \subsection{HITS}
 Este también lo dividimos en la etapa en la etapa de inicialización y de cálculo de sus vectores. En la primera creamos la matriz estocástica e inicializamos los vectores y en la segunda calculamos los mismos hasta que iteremos k veces o la diferencia obtenida sea menor que la tolerancia.
 
-%Inicializaci\'on:
-%\begin{lstlisting}[frame=single]  
-%Creo el Dok vacio
-%Para cada arista:
-%	defino en el dok el nodo desde y hasta
-%	
-%Inicio los vectores de hubs y autoridades con todos sus valores en 1 y normalizados
-	
-%\end{lstlisting}
+\begin{algorithm}
+\caption{inicializar(grafo)}\label{euclid}
+\begin{algorithmic}[1]
+\State  $\textit{dok = nuevoDOK()}$
+\For{cada nodo del grafo}
+	\State $\textit{nodosLlegada = nodo.obtenerNodosALosQueLlega();}$	
+	\For{nodo2 de nodosLlegada}		
+		\State $\textit{dok.definir(nodo1,nodo2,1)}$ 
+	\EndFor	
+\EndFor
+\State  $\textit{vectorHubs = nuevoVectorConUnos(grafo.cantNodos())}$
+\State  $\textit{vectorAutoridades = nuevoVectorConUnos(grafo.cantNodos())}$
+\end{algorithmic}
+\end{algorithm}
 
-%Cálculo de vectores Hubs y Autoridades
-%\begin{lstlisting}[frame=single] 
-%Itero de 1 a K
-%	Para el vector de hubs multiplico el dok transpuesto por el vector de autoridades y normalizo
-%	Para el vector de autoridades multiplicoel dok transpuesto por el vector de hubs y normalizo
-%	Si la diferencia entre el nuevo vector de hubs o autoridades con su valor previo es menor a la tolerancia termino la iteracion
-%\end{lstlisting}
+\begin{algorithm}
+\caption{calculoAutoridadesYHubs(tolerancia)}\label{euclid}
+\begin{algorithmic}[1]
+	\State $\textit{dokTranspuesto = dok.transponer();}$
+\For{1 a K}
+	\State $\textit{vectorHubsPrevio = vectorHubs;}$
+	\State $\textit{vectorAutoridadesPrevio = vectorAutoridades;}$
+	\State $\textit{vectorHubs = dokTranspuesto X vectorHubs;}$
+	\State $\textit{vectorHubs.normalizar();}$
+	\State $\textit{vectorAutoridades = dok X vectorAutoridades;}$
+	\State $\textit{vectorAutoridades.normalizar();}$
+	\State $\textit{toleranciaAutoridades = NormaManhattan(vectorAutoridades,vectorAutoridadesPrevio);}$
+	\State $\textit{toleranciaHubs = NormaManhattan(vectorHubs,vectorHubsPrevio);}$
+	\If{$toleranciaHubs < tolerancia || toleranciaAutoridades < tolerancia$}
+		\State $\textit{break;}$
+	\EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
 \subsection{Indeg}
 
 La implementación de este algoritmo es bastante simple. Tomamos un vector inicial con ceros del tamaño de las páginas y recorremos todas las referencias de cada página hacia al resto, y por cada una de los sitios a los que visita, le sumamos en 1/cantidadLinksTotal su puntaje en el vector inicial.
