@@ -1,15 +1,24 @@
 \section{Discusi\'on}
 
-\subsection{PageRank}
-Claramente podemos notar que a medida que el C crece, el algoritmo toma más iteraciones en achicar la norma. Esto se debe a que el grado de aleatoriedad elimina el peso de la unión entre los sitios e indica una uniformidad en el comportamiento, entonces la matriz si bien estocástica ahora se encuentra distribuida esa suma $=$ 1 por columna en varias filas. Esto produce mayor cantidad de iteraciones en el método de la potencia ya que la mayor uniformidad de la matriz provoca que ninguna 'zona' de la matriz absorba más que las demás.   $[1]$\\
-También es bastante notorio que a pesar de que los distintos casos de prueba sean muy diferentes entre si y hasta cientos de veces más grandes, la evolución de la norma converge de formas casi idénticas y lo mismo sucede para las iteraciones requeridas hasta llegar a la norma variando el parámetro c.
+\subsection{Convergencia de PageRank}
+Es importante notar que para distintos tamaños de redes las iteraciones que toma para converger son muy parecidas para el mismo c. Acá solo mostramos dos ejemplos (uno grande y uno chico) pero probamos otros casos y nos dió lo mismo. \\
+Así como es lo mismo para distintas redes (fijando el c), es notable como para C chicos las iteraciones son pocas, sin embargo, el crecimiento es exponencial (o más a veces) en relación al crecimiento del c. Aquí nos referimos a la cantidad de veces que realizamos el método de la potencia.
 
-
-
-\subsection{HITS}
-En todos los casos podemos observar que tanto el vector de hubs como el de autridades convergen de forma muy similar, sólo en la instancia grande hay una pequeña diferencia pero es bastante despreciable. 
+\subsection{Convergencia de HITS}
+En todos los casos podemos observar que tanto el vector de hubs como el de autoridades convergen de forma muy similar, sólo en la instancia grande hay una pequeña diferencia pero es bastante despreciable. 
 Por otro lado podemos ver que los casos en los que mas drásitca es la convergencia (abortion y genetic) los valores inciales de la norma manhattan son muy altos (alrrededor de 100), provocando asi que se equiparen con las que comienzan en valores mas bajos pero convergen mas lentamente (movies y standford).
 En estos dos últimos casos además podemos notar grandes saltos de convergencia pasando en pocas iteracion de 1$e^{20}$ a menos de 1$e^{80}$, entiendiendo, aca sí, que la diferencia es totalmente despreciable y el valor obtenido ya ha convergido. De todas formas consideramos que puede ser un punto de interés para analizar mas en profundidad ya que más allá de decir que entendemos de eso, no sabríamos explicar porque se produce ese salto. 
+
+\subsection{Comparación de Tiempos}
+Tanto en PageRank como en Hits notamos tiempos parecidos para instancias chicas pero a medida que crece la cantidad de nodos, el tiempo de Hits crece en forma significativa en comparación a PageRank. Esto no significa que PageRank no esté creciendo pero lo hace en menor medida que Hits y parece notar un tiempo más estable en la cantidad de nodos.
+
+
+Es interesante el menor tiempo de ejecución en el grafo de tamaño 8 millones -- $webBerkStan$ -- que en el grafo de tamaño 6 millones -- $webGoogle$. Resulta que $webGoogle$, aunque tiene menos aristas, tiene casi un 30\% más de nodos que $webBerkStan$. Se puede considerar que el mayor limitante en el tiempo de ejecución de PageRank es la cantidad de nodos antes que la cantidad de aristas.
+
+\subsection{Comparación de Calidad}
+
+\subsection{HITS}
+
 
 \subsection{Ejemplos de comportamiento esperado}
 
