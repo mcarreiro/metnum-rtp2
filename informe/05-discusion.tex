@@ -13,12 +13,7 @@ En estos dos últimos casos además podemos notar grandes saltos de convergencia
 Tanto en PageRank como en Hits notamos tiempos parecidos para instancias chicas pero a medida que crece la cantidad de nodos, el tiempo de Hits crece en forma significativa en comparación a PageRank. Esto no significa que PageRank no esté creciendo pero lo hace en menor medida que Hits y parece notar un tiempo más estable en la cantidad de nodos.
 
 
-\subsection{Comparación de Calidad}
-
-\subsection{HITS}
-
-
-\subsection{Ejemplos de comportamiento esperado}
+\subsection{Comportamiento Esperado}
 
 A continuación veremos en redes pequeñas como se comporta cada algoritmo para ver si su comportamiento es el esperado.
 
@@ -81,7 +76,7 @@ $$
 
 Este algoritmo naive es bastante claro de interpretar, y el resultado es claramente el esperado. El nodo 2 posee mucha más calidad de sitio ya que es el más apuntado, y en el segundo puesto empatando el nodo 4 y 5, por ser aquellos con más sitios apuntándolos, excpetuando el nodo 2. El resto de los nodos no reciben ningún tipo de link hacia ellos, por lo que su puntaje es de cero.
 
-\subsection{Análisis cualitativo}
+\subsection{Comparación de calidad}
 
 En esta sección procederemos a discutir sobre la calidad de resultados que obtenemos de cada algoritmo y luego los compararemos entre si.\\
 Como el objetivo de este trabajo práctico esta enfocado al ranking web que se le asigna a los distintos sitios de internet, consideramos como buenos resultados aquellos que aparecerían en la primer página de los buscadores, es decir, los primero 10 resultados serán los que consideraremos para el análisis.
