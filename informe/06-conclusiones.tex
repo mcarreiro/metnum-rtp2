@@ -29,24 +29,25 @@ En cuanto a estrategia para mejorar el posicionamiento de tu sitio bajo este alg
 
 En esta sección intentaremos analizar distintas instancias de una red para analizar cual es la estrategia más conveniente a la hora de comprar links para aumentar el PageRank 
 Como explicamos anteriormente, para el algoritmo de PageRank es más importante la calidad del sitio de entrada antes que la cantidad. Por lo tanto para encontrar la mejor estrategia intentaremos ver como se comporta la red para un sitio en especial variando los links que lo apunta. Para esto nos quedaremos con los primeros sitios de mayor pagerank de la red original y entre esos iremos variando entre diferentes conjuntos que tengan diferentes cantidades de links de salida y observando en que posición final queda nuestro sitio \\
-En este caso analiceramos como se posiciona el sitio de los Wachiturros (www.wachiturros.com) bajo diferentes combinaciones de sitios que lo linkean en el set de datos \textbf{Death Penalty} que venimos utilizando en las anteriores secciones.\\
+En este caso analiceramos como se posiciona el sitio de los Wachiturros bajo diferentes combinaciones de sitios que lo linkean en el set de datos \textbf{Death Penalty} que venimos utilizando en las anteriores secciones.\\
 
 Ahora hagamos las siguientes prueba, apuntemos a los Wachiturros por distintas combinaciones de las primeras 10 posiciones que muestran los resultados del set de datos y analicemos en la posición que queda el sitio en cada caso:
 
    $$ 
 \begin{bmatrix}
               		&      Ranking \\
- 10\ sitios 		&   	12         \\
- 5\ primeros   		&     	27   \\
- 5\ segundos   		&      	65 	\\
- Mejor\ sitio   		&        122    \\
- 5\ menos\ salidas  	&        16     \\
- 4\ menos\ salidas  	&        19  \\
- 3\ menos\ salidas   	&     	34 \\
+ 10\ sitios 		&   	12º        \\
+ 5\ primeros   		&     	27º   \\
+ 5\ segundos   		&      	65º 	\\
+ Mejor\ sitio   		&        122º    \\
+ 5\ menos\ salidas  	&        16º     \\
+ 4\ menos\ salidas  	&        19º  \\
+ 3\ menos\ salidas   	&     	34º \\
 \end{bmatrix} 
 $$
 
-Como se puede ver por los resultados, 
+Como se puede ver por los resultados, el mejor posicionamiento se consigue cuando los 10 sitios nos apuntan pero a su vez es el que mayor costo tiene y comparando con los demás resultados podemos ver que se consiguen muy buenos resultados cuando priorizamos los nodos que tienen menos links de salidas, sobre todo el caso en que solamente con que 4 nodos de los 10 que no tienen salidas nos apuntan figuramos en una posición muy cercana a la lograda comprando todos los links y tienendo un costo bastante menor ya que además esos sitios no son los de posiciones altas lo que se traduce en un menor costo por cada uno.\\
+Por lo tanto, se puede concluír que al momento de decir que sitios nos deben linkear, debemos optar por los que están bien posicionados pero a su vez tienen muy pocas salidas, ya que este último es un factor muy determinante en el algoritmo de PageRank. 
 
 
 
