@@ -117,10 +117,54 @@ $$
 Compressed Column Storage es una forma de almacenamiento para las matrices dispersas que se basa en el concepto de almacenar solo los elementos no-nulos de la matriz e información adicional para poder recorrerla y operar con ella normalmente. \\
 En este caso su forma de almacenamiento consta de 3 arreglos y, como su nombre lo indica, destina un arreglo principal para almacenar los valores no-nulos de cada columna contiguos, y utiliza otro dos arreglos, uno del mismo tamaño del anterior que almacena el número de fila de cada elemento y otro de menor tamaño que contendrá las posiciones del arreglo principal en donde se producen los saltos de columna, que indica cuando un valor pertenece a la columna siguiente.
 
+Veamos un ejemplo, suponiendo que tenemos la siguiente matriz:
+
+
+   $$ 
+\begin{bmatrix}
+       0    &      0    &   0       &   0           &  4    \\
+       9    &   1  &   3 &   0           &   0    \\
+       0    &      0    &   0       &  2      &   0    \\
+       0    &      7    &   0       &   6      &   2    \\
+ 5    &      0    &   0       &   0           &   0    \\
+\end{bmatrix} 
+$$
+Los arreglos quedarán asi:
+
+
+\[ valores= \left( \begin{array}{ccccccccc}
+9 & 5 & 1 & 7 & 3 & 2 & 6 & 4 & 2\end{array} 
+\right)\] 
+
+\[ indice\ filas = \left( \begin{array}{ccccccccc}
+2 & 5 & 2 & 4 & 2 & 3 & 4 & 1 & 4\end{array} 
+\right)\] 
+
+\[ puntero\ columnas = \left( \begin{array}{cccccc}
+1 & 3 & 5 & 6 & 8 & 10\end{array} 
+\right)\] 
+
 \subsubsection{CRS}
 Compressed Row Storage es otra forma de almacenamiento, análoga a CSC, con la diferencia de que en el segundo arreglo al que nos referimos anteriormente almacena el numero de columna de cada elemento y el tercer arreglo contiene las posiciones del arreglo principal en donde se producen saltos de fila.
 
+Siguiendo el ejemplo anterior los arreglos quedarían:
+
+\[ valores= \left( \begin{array}{ccccccccc}
+4 & 9 & 1 & 3 & 2 & 7 & 6 & 2 & 5\end{array} 
+\right)\] 
+
+\[ indice\ columnas = \left( \begin{array}{ccccccccc}
+5 & 1 & 2 & 3 & 4 & 2 & 4 & 5 & 1\end{array} 
+\right)\] 
+
+\[ puntero\ filas = \left( \begin{array}{cccccc}
+1 & 2 & 5 & 6 & 9 & 10\end{array} 
+\right)\] 
+
 \subsubsection{DOK}
+
+FALTA TERMINAR
+Elegimos DOK porque es mas fácil visualizarlo, se puede acceder a una posición de la matriz rápidamente sin necesidad de calcular y las complejidades para las operaciones necesarias con la matriz eran muchos menores, y aún teniendo en cuenta que el almacenamiento requerido es mayor que para el de los otros dos, la diferencia no es tan grande y optamos por priorizar la ventaja de complejidad que nos proporciona, cumple todas las expectativas y necesidades que requerimos para elaborar el informe y realizar los experimentos.
 
 
 
