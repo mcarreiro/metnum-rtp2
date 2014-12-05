@@ -24,52 +24,30 @@ En cuanto a estrategia para mejorar el posicionamiento de tu sitio bajo este alg
 %     \end{center}
 % \end{figure}
 
-% \subsection{Mejor estrategia para comprar links}
-% \subsubsection{PageRank}
+\subsection{Mejor estrategia para comprar links}
+\subsubsection{PageRank}
 
-% Como explicamos anteriormente, el algoritmo de PageRank prioriza la calidad del sitio de entrada antes que la cantidad. Por lo tanto supongamos que tenemos el siguiente escenario:
+En esta sección intentaremos analizar distintas instancias de una red para analizar cual es la estrategia más conveniente a la hora de comprar links para aumentar el PageRank 
+Como explicamos anteriormente, para el algoritmo de PageRank es más importante la calidad del sitio de entrada antes que la cantidad. Por lo tanto para encontrar la mejor estrategia intentaremos ver como se comporta la red para un sitio en especial variando los links que lo apunta. Para esto nos quedaremos con los primeros sitios de mayor pagerank de la red original y entre esos iremos variando entre diferentes conjuntos que tengan diferentes cantidades de links de salida y observando en que posición final queda nuestro sitio \\
+En este caso analiceramos como se posiciona el sitio de los Wachiturros (www.wachiturros.com) bajo diferentes combinaciones de sitios que lo linkean en el set de datos \textbf{Death Penalty} que venimos utilizando en las anteriores secciones.\\
 
+Ahora hagamos las siguientes prueba, apuntemos a los Wachiturros por distintas combinaciones de las primeras 10 posiciones que muestran los resultados del set de datos y analicemos en la posición que queda el sitio en cada caso:
 
-%  \begin{figure}[!htb]
-% \begin{center}
-%     \includegraphics[scale=0.5]{imagenes/test6.png}
-%     \caption{Red de 8 nodos, c=0.85}
-%     \end{center}
-% \end{figure}
+   $$ 
+\begin{bmatrix}
+              		&      Ranking \\
+ 10\ sitios 		&   	12         \\
+ 5\ primeros   		&     	27   \\
+ 5\ segundos   		&      	65 	\\
+ Mejor\ sitio   		&        122    \\
+ 5\ menos\ salidas  	&        16     \\
+ 4\ menos\ salidas  	&        19  \\
+ 3\ menos\ salidas   	&     	34 \\
+\end{bmatrix} 
+$$
 
-% Cuyos pesos son:
-%    $$ 
-% \begin{bmatrix}
-% Nodo 1 & 0.32079\\
-% Nodo 2 & 0.15762\\
-% Nodo 3 & 0.15762\\
-% Nodo 4 & 0.05283\\
-% Nodo 5 & 0.05283\\
-% Nodo 6 & 0.05283\\
-% Nodo 7 & 0.05283\\
-% Nodo 8 & 0.05283\\
-% \end{bmatrix} 
-% $$
+Como se puede ver por los resultados, 
 
-% Ahora, suponiendo que el costo de cada nodo es mas caro a medida que aumenta su peso, vamos a ver que es más conveniente, si comprar el derecho a que el nodo 1 nos apunte o en vez de eso comprar el linkeo de los nodos 2 y 3. Entonces vamos a testear como se comporta el algoritmo mediante estas dos alternativas lineando al sitio de los Wachiturros.
-
-
-%    $$ 
-% \begin{bmatrix}
-%  & Nodo 1 & Nodo 2 y 3 \\
-% Wachiturros & 0.24557  & 0.05018   \\
-% Nodo 1 & 0.24201& 0.30469\\
-% Nodo 2 & 0.11891& 0.14971\\
-% Nodo 3 & 0.11891& 0.14971\\
-% Nodo 4 & 0.03986  & 0.05018\\
-% Nodo 5 & 0.03986  & 0.05018\\
-% Nodo 6 & 0.03986  & 0.05018\\
-% Nodo 7 & 0.03986 & 0.05018\\
-% Nodo 8 & 0.03986 & 0.05018\\
-% \end{bmatrix} 
-% $$
-
-% Por lo tanto se puede ver que conviene que el Nodo 1 nos apunte antes que el 2 y 3. Conviene porque nos asigna un mayor peso y porque nos deja a su vez mejor posicionado en la tabla final. Además de significar una optimización en el costo total.
 
 
 
