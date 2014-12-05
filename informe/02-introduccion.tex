@@ -11,13 +11,13 @@ Durante el desarrollo de este trabajo utilizaremos el método de la potencia, co
 \subsubsection{PageRank}
 
 El algoritmo de rankeo de sitios  llamado \textbf{PageRank} lo desarrollaron los fundadores de Google, Page y Brin, y fue tan revolucionario que cambió la forma en que se empezó a buscar en la web. \\
-El primer punto de este algoritmo es mirar a la web como un grafo dirigido, donde cada nodo representa un sitio y los vertices van de un nodo a otro si un sitio contiene un link direccionando a este otro.
+El primer punto de este algoritmo es mirar a la web como un grafo dirigido, donde cada nodo representa un sitio y los vértices van de un nodo a otro si un sitio contiene un link direccionando a este otro.
 A partir de esto se define una \emph{matriz de vínculos} $M$, y como su nombre lo indica, esta representará las conectividades de los sitios pero con la particularidad de que tendrá información acerca de cuanto puntaje le asigna un sitio a otro, es decir, $m_{ij}$ será 1/$G_j$  (siendo $G_j$ el grado de salida del sitio $j$) si $j$ tiene un link a $i$ y 0 en otro caso.
-De esta forma, la importancia de cada sitio esta medida por la calidad de sitios que linkean a cada uno, y a su vez la calidad esta conformada por la cantidad de sitios a los que redirijo, ya que si un sitio redirige a pocos sitios a cada uno estara otorgandole un puntaje cercano al 1, y en caso contrario el puntaje que otorgará sera cercano al 0 y no tendrá mucho peso a la hora de que los sitios de destino obtengan mayor importancia gracias a este.\\
-Facilmente se puede deducir que todas las columnas de la matriz resultante van a sumar 1, por lo que será una matriz \textit{``estocastica por columnas"}. Luego el problema de encontrar el ranking de cada cada sitio es equivalente a encontrar un $x\in \mathbb{R}^n$ tal que $Px = x$, es decir, encontrar (suponiendo que existe) un autovector asociado al autovalor 1 de una matriz cuadrada, tal que $x_i \ge
+De esta forma, la importancia de cada sitio esta medida por la calidad de sitios que linkean a cada uno, y a su vez la calidad esta conformada por la cantidad de sitios a los que redirijo, ya que si un sitio redirige a pocos sitios a cada uno estará otorgándole un puntaje cercano al 1, y en caso contrario el puntaje que otorgará sera cercano al 0 y no tendrá mucho peso a la hora de que los sitios de destino obtengan mayor importancia gracias a este.\\
+Fácilmente se puede deducir que todas las columnas de la matriz resultante van a sumar 1, por lo que será una matriz \textit{``estocastica por columnas"}. Luego el problema de encontrar el ranking de cada cada sitio es equivalente a encontrar un $x\in \mathbb{R}^n$ tal que $Px = x$, es decir, encontrar (suponiendo que existe) un autovector asociado al autovalor 1 de una matriz cuadrada, tal que $x_i \ge
 0$ y $\sum_{i = 1}^n x_i = 1$. 
 \\
-Uno puede abstraerse a la noción del \emph{navegante aleatorio}. Este vendría a representar cualquier usuario común que navega por la web a traves de los links y que elige cualquiera de ellos con igual probabilidad.
+Uno puede abstraerse a la noción del \emph{navegante aleatorio}. Este vendría a representar cualquier usuario común que navega por la web a través de los links y que elige cualquiera de ellos con igual probabilidad.
 \\
 Un detalle importante que se debe considerar es que para que el PageRank funcione no puede haber nodos desconectados, ya que de ser así la matriz de vínculos no sería estocastica por columnas debido a que la columna de la matriz que representa a los sitios que linkea estarían todos en 0. La solución a esto vendría a ser la inversa del nodo, y es considerar a que el sitio esta conectado a \textbf{todos} los demás sitios, por lo que será equiprobable la navegación a cada uno de ellos. Para tal modificar se le debe hacer una modificación a la matriz original, con lo que si definimos $v \in \mathbb{R}^{n \times n}$, con $v_i = 1/n$ y $d \in \{0,1\}^{n}$ donde 
 $d_i = 1$ si $G_i = 0$, y $d_i = 0$ en caso contrario, siendo $n$ la cantidad total de sitios web. La nueva matriz de transici\'on será:
@@ -36,7 +36,7 @@ $c \ge 0$, y podemos incluirlo al modelo de la siguiente forma:
 E & = & v \bar{1}^t \\
 M_f & = & cM_p + (1-c)E,
 \end{eqnarray*}
-\noindent donde $\bar{1} \in \mathbb{R}^n$ es un vector tal que todas sus componenetes valen 1. Probabil\'isticamente, la
+\noindent donde $\bar{1} \in \mathbb{R}^n$ es un vector tal que todas sus componentes valen 1. Probabil\'isticamente, la
 componente $x_j$ del vector soluci\'on (normalizado) del sistema $M_f x = x$ representa la proporci\'on del tiempo que,
 en el largo plazo, el navegante aleatorio pasa en la p\'agina $j$. \\
 Para llegar a la solución nos basaremos en el Método de la Potencia, que consiste en multiplicar la matriz sucesivamente a un vector inicial arbitrario hasta que la diferencia entre multiplicaciones sea ínfima. Esto se verá en la sección Desarrollo donde veremos la forma de implementación de la misma.
@@ -47,7 +47,7 @@ Una vez calculado el ranking, el resultado será el ranking de todas las página
 
 \subsubsection{HITS}
 
-Este algoritmo fué pensado por Kleinberg $[2]$ y su esenscia está en la separación conceptual que hace entre un nodo \textit{autoridad} y uno \textit{Hub}. Vale aclarar que en este caso también entenderemos a un nodo como parte del grafo que modela a la internet y que representa a un sitio web en particular. \\
+Este algoritmo fué pensado por Kleinberg $[2]$ y su esencia está en la separación conceptual que hace entre un nodo \textit{autoridad} y uno \textit{Hub}. Vale aclarar que en este caso también entenderemos a un nodo como parte del grafo que modela a la internet y que representa a un sitio web en particular. \\
 Autoridad serían aquellos sitios que tienen mayor importancia dentro de un tema específico y Hubs los que apuntan a estos sitios. En palabras mas terrenales las autoridades serían los que tienen las mejores respuestas y los hubs los que conocen a las mejores autoridades.
 En la práctica se entiende por autoridades a aquellos nodos que son apuntados por una gran cantidad de sitios y por Hubs a los nodos a apuntan a muchos otros. Una web es mejor Autoridad si es apuntada por buenos Hubs y viceversa, un Hub es mejor si apunta a las mejores autoridades.\\
 Para modelarlo computacionalmente pensamos a la red como una matriz $A \in \{0,1\}^{n \times n}$ donde cada fila y columna representan a un nodo y tienen un 1 si el nodo fila apunta al nodo columna o un 0 en caso contrario. Luego Kleinberg nos señala que debemos crear un vector \textit{x} e \textit{y} para agrupar las autoridades y hubs respectivamente. Estos vectores nos dice que los obtengamos tomando un x0 e y0 inciales con todos sus valores 1 y realizando este cálculo:
@@ -162,9 +162,27 @@ Siguiendo el ejemplo anterior los arreglos quedarían:
 \right)\] 
 
 \subsubsection{DOK}
+Dictionary of Keys se basa en otro concepto de almacenamiento de los valores no-nulos distinto de los anteriores. Como su nombre lo indica, es un diccionario en donde solo se almacenan los valores no-nulos y su posición como clave del mismo, cosa que nos asegura que no haya dos valores para una misma posición. Es decir, por cada elemento no nulo de la matriz el diccionario tendrá un elemento $<(fila, columna), valor>$
 
-FALTA TERMINAR
-Elegimos DOK porque es mas fácil visualizarlo, se puede acceder a una posición de la matriz rápidamente sin necesidad de calcular y las complejidades para las operaciones necesarias con la matriz eran muchos menores, y aún teniendo en cuenta que el almacenamiento requerido es mayor que para el de los otros dos, la diferencia no es tan grande y optamos por priorizar la ventaja de complejidad que nos proporciona, cumple todas las expectativas y necesidades que requerimos para elaborar el informe y realizar los experimentos.
+Continuando el ejemplo que usamos en las secciones anteriores, los elementos del diccionario serán:
+\begin{center}
+
+$<(1, 5), 4>$\\
+$<(2, 1), 9>$\\
+$<(2, 2), 1>$\\
+$<(2, 3), 3>$\\
+$<(3, 4), 2>$\\
+$<(4, 2), 7>$\\
+$<(4, 4), 6>$\\
+$<(4, 5), 2>$\\
+$<(5, 1), 5>$
+
+\end{center}
+
+
+\subsubsection{Elección}
+Como las matrices que vamos a manejar son en su mayoría dispersas debíamos decidir una forma optima de almacenarlas .
+Entre las tres formas presentadas anteriormente terminamos eligiendo el Dictionary Of Keys. Tomamos esta decisión en función de lo que necesitábamos hacer y los tiempos que teníamos para hacerlo, y por tal motivo vimos que el DOK nos daba una mejor visualización de los datos. Sin bien recorrer el DOK es mas complicado que en CSC o CRS porque los elementos no tienen un orden especifico, este tiene un fácil acceso a cada posición de la matriz sin necesidad de realizar cálculos extras, ventaja que termino pesando para la toma de decisión.  Otra característica que peso para la elección fue que las complejidades para las operaciones necesarias con la matriz eran muchos menores, y aún teniendo en cuenta que el almacenamiento requerido es mayor que para el de los otros dos, la diferencia no es tan grande y optamos por priorizar lo otro, ya que además cumple todas las expectativas y necesidades que requerimos para elaborar el informe y realizar los experimentos.
 
 
 
