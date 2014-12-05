@@ -36,10 +36,11 @@ $c \ge 0$, y podemos incluirlo al modelo de la siguiente forma:
 E & = & v \bar{1}^t \\
 M_f & = & cM_p + (1-c)E,
 \end{eqnarray*}
-\noindent donde $\bar{1} \in \mathbb{R}^n$ es un vector tal que todas sus componenetes valen 1. La matriz resultante
-$M_f$ corresponde a un enriquecimiento del modelo formulado en (\ref{eq:basicmodel}). Probabil\'isticamente, la
+\noindent donde $\bar{1} \in \mathbb{R}^n$ es un vector tal que todas sus componenetes valen 1. Probabil\'isticamente, la
 componente $x_j$ del vector soluci\'on (normalizado) del sistema $M_f x = x$ representa la proporci\'on del tiempo que,
-en el largo plazo, el navegante aleatorio pasa en la p\'agina $j \in Web$.
+en el largo plazo, el navegante aleatorio pasa en la p\'agina $j$. \\
+Para llegar a la solución nos basaremos en el Método de la Potencia, que consiste en multiplicar la matriz sucesivamente a un vector inicial arbitrario hasta que la diferencia entre multiplicaciones sea ínfima. Esto se verá en la sección Desarrollo donde veremos la forma de implementación de la misma.
+
 
 Una vez calculado el ranking, el resultado será el ranking de todas las páginas del conjunto.
 
@@ -107,14 +108,20 @@ El uso del mismo estará detallado en el desarrollo de cada algoritmo presentado
 $$
 
 
-\subsection{DOK vs CRS vs CSC}
-    La matriz dispersa al tener la propiedad de tener muy pocos valores no$-$cero es conveniente solo guardar estos y asumir el resto como cero. Existen varias estructuras como Dictionary of Keys (dok), Compressed Sparse Row (CSR) o Compressed Sparse Column (CSC) pensadas para optimizar el espacio y las operaciones con estas estructuras de datos. En el desarrollo de este TP, utilizamos DOK por facilidad en el uso del mismo. Tanto CSR o CSC se basan en la estructura Yale y se diferencian en como guardan los mismos valores, uno priorizando las filas y otro las columnas respectivamente.\\
-    La estructura Yale consiste en a partir de la matriz original obtener tres vectores que contengan 
-    \begin{itemize}
-        \item A = los elementos no$-$cero de arriba-abajo,izquierda-derecha
-        \item IA = los indices para cada fila i del primer elemento no-cero de dicha fila
-        \item JA = los indices de columna para cada valor de A
-    \end{itemize}
-    Si bien el caso de que haya una fila con muchos números no-ceros es más beneficiosa la utilización de esta estructura, la facilidad con DOK permite hacer pruebas más rápido.Y nos pareció poco práctico ponernos a implementar todas las lógicas requeridas para la eliminación o agregación de nuevos datos en estas estructuras ya que no hacían a la escencia del TP y complejizaban el código y el debagueo durante las pruebas y el desarrollo. Consideramos que la optimización otorgada por DOK es suficiente para el tipo de análisis que deseamos hacer sobre los algoritmos de rankeo solicitados
+\subsection{Almacenamiento de matrices dispersas}
+ 
+ La matriz dispersa al tener la propiedad de tener muy pocos valores distintos de cero es conveniente solo guardar estos y asumir el resto como cero. Existen varias estructuras como Dictionary of Keys (DOK), Compressed Sparse Row (CSR) o Compressed Sparse Column (CSC) pensadas para optimizar el espacio y las operaciones con estas estructuras de datos.\\
+ Veamos las características de cada una: 
+
+\subsubsection{CSC}
+Compressed Column Storage es una forma de almacenamiento para las matrices dispersas que se basa en el concepto de almacenar solo los elementos no-nulos de la matriz e información adicional para poder recorrerla y operar con ella normalmente. \\
+En este caso su forma de almacenamiento consta de 3 arreglos y, como su nombre lo indica, destina un arreglo principal para almacenar los valores no-nulos de cada columna contiguos, y utiliza otro dos arreglos, uno del mismo tamaño del anterior que almacena el número de fila de cada elemento y otro de menor tamaño que contendrá las posiciones del arreglo principal en donde se producen los saltos de columna, que indica cuando un valor pertenece a la columna siguiente.
+
+\subsubsection{CRS}
+Compressed Row Storage es otra forma de almacenamiento, análoga a CSC, con la diferencia de que en el segundo arreglo al que nos referimos anteriormente almacena el numero de columna de cada elemento y el tercer arreglo contiene las posiciones del arreglo principal en donde se producen saltos de fila.
+
+\subsubsection{DOK}
+
+
 
 
