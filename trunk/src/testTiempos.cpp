@@ -21,7 +21,7 @@ int main() {
 	clock_t start;
 	double timedif;
 	double timedifAnt = -1;
-	for( int i = 10; i < 11000; i=i+120){
+	for( int i = 10; i < 11000; i=i+200){
 		vector<vector<int> > links(i);
 		for( int j = 0; j < i; j++){
 			srand(time(NULL));
@@ -39,7 +39,7 @@ int main() {
 		h.hubsYautoridades(0.001);
 		timedif = ((double)clock() - start) / CLOCKS_PER_SEC;
 		cout.precision(15);
-		if(timedif > timedifAnt){
+		
 			cout << i << " " << timedif << " ";
 
 			timedifAnt = timedif;
@@ -53,7 +53,7 @@ int main() {
 			Indeg indeg (links);
 			timedif = ((double)clock() - start) / CLOCKS_PER_SEC;
 			cout << timedif << "\n";	
-		}
+		
 	}	
     return 0;
 }
