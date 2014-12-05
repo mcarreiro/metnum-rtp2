@@ -40,8 +40,19 @@ int main() {
 		timedif = ((double)clock() - start) / CLOCKS_PER_SEC;
 		cout.precision(15);
 		if(timedif > timedifAnt){
-			cout << i << " " << timedif << "\n";
+			cout << i << " " << timedif << " ";
+
 			timedifAnt = timedif;
+			start = clock(); 
+			PageRank pr(0.15, 0.001 , links.size(), links);
+          		pr.ranking(1000);
+			timedif = ((double)clock() - start) / CLOCKS_PER_SEC;
+			cout << timedif << " ";
+
+			start = clock();
+			Indeg indeg (links);
+			timedif = ((double)clock() - start) / CLOCKS_PER_SEC;
+			cout << timedif << "\n";	
 		}
 	}	
     return 0;
