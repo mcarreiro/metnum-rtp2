@@ -26,8 +26,6 @@ Inicializaci\'on:
 			\State $\textit{desconectados.agregar(link);}$ 
 	\EndIf
 \EndFor
-
-
 \end{algorithmic}
 \end{algorithm}
 
@@ -78,10 +76,17 @@ Este también lo dividimos en la etapa en la etapa de inicialización y de cálc
 
 La implementación de este algoritmo es bastante simple. Tomamos un vector inicial con ceros del tamaño de las páginas y recorremos todas las referencias de cada página hacia al resto, y por cada una de los sitios a los que visita, le sumamos en 1/cantidadLinksTotal su puntaje en el vector inicial.
 
-\begin{lstlisting}[frame=single] 
-Inicializo el vector de resultados con ceros.
-Para cada conjunto de referencias de una pagina:
-	Para cada referencia:
-		Al vector resultados le sumo 1 / cantidad total de los links
-	
-\end{lstlisting}
+\begin{algorithm}
+\caption{calcular(links)}\label{euclid}
+\begin{algorithmic}[1]
+\State $\textit{$v_{inicial}$ = vector(links.size, 0);}$ \Comment{creo un vector de dim elementos y lo inicializo en 0}
+\State $\textit{$totalAmountOfDomains$ = links.size;}$ 
+\For{$cada\ link\ en\ links$}
+	\If{$link\ tiene\ salidas$}
+		\For{$cada\ salida\ del\ nodo$}
+			\State $\textit{$v[salida] = v[salida] + 1/totalAmountOfDomains;$}$ \Comment{A cada salida del link actual le sumo el puntaje 1/totalAmountOfDomains}
+		\EndFor
+	\EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
