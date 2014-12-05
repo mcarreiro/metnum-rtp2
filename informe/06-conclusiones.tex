@@ -8,10 +8,6 @@ En cuanto a tiempos es bastante estable y podemos deducir bajo las pruebas reali
 \subsection{HITS}
 
 Una parte importante sobre este algoritmo es que tarda mucho para nodos grandes, sin embargo no debemos olvidar que en su paper$[2]$ Kleinberg habla de que este algoritmo debe ser aplicado no sobre toda la red sin sobre un subconjunto de la misma ($\textit{root set}$) obtenido de una busqueda incial. Por lo tanto si acotamos el análisis a los grafos mas acotados podemos ver que el tiempo de computo es aceptable y hasta muy parecido al de page rank. 
-Si el algoritmo aplicado en la red fuese HITS lo recomendable al cliente sería que negocie con los principales HUBS para que apunten a su sitio. Logrando así rankear mejor en la sección de Autoridades sobre el tema. 
-No le recomendaríamos que negocie con las páginas autoridades ya que dificilmente estas accediesen debido a que de esta manera se estarían restando puntos en el ranking de autoridades.\\
-Por ejemplo en el caso de death penalty habría que negociar con alguno de los 3 principales HUBS: clarkprosecutor.org, faculty.etsu.edu o coramnobis.com. Teniendo en cuenta el costo de cada uno, ya que si el primero costase el doble 
-o mas que el segundo tal vez convendría más negociar con el segundo y tercero.
 
 \subsection{INDEG}
 Este algoritmo es bastante simple y en una red chica y confiable puede llegar a valer. Es muy rápido y en caso de necesitar algún dato rápido, es muy fácil de implementar. Igualmente tiene mucho peso la confiabilidad, ya que es muy simple de crecer tu puntaje, simplemente comprando un lugar mínimo en la mayor cantidad de páginas posibles.\\
@@ -25,11 +21,14 @@ En cuanto a estrategia para mejorar el posicionamiento de tu sitio bajo este alg
 % \end{figure}
 
 \subsection{Mejor estrategia para comprar links}
+
+En esta sección intentaremos posicionar el sitio wachiturros dentro del data-set Death Penalty y cómo queda en cada 
+estrategia propuesta.
+
 \subsubsection{PageRank}
 
-En esta sección intentaremos analizar distintas instancias de una red para analizar cual es la estrategia más conveniente a la hora de comprar links para aumentar el PageRank 
+Intentaremos analizar distintas instancias de una red para analizar cual es la estrategia más conveniente a la hora de comprar links para aumentar el PageRank 
 Como explicamos anteriormente, para el algoritmo de PageRank es más importante la calidad del sitio de entrada antes que la cantidad. Por lo tanto para encontrar la mejor estrategia intentaremos ver como se comporta la red para un sitio en especial variando los links que lo apunta. Para esto nos quedaremos con los primeros sitios de mayor pagerank de la red original y entre esos iremos variando entre diferentes conjuntos que tengan diferentes cantidades de links de salida y observando en que posición final queda nuestro sitio \\
-En este caso analiceramos como se posiciona el sitio de los Wachiturros bajo diferentes combinaciones de sitios que lo linkean en el set de datos \textbf{Death Penalty} que venimos utilizando en las anteriores secciones.\\
 
 Ahora hagamos las siguientes prueba, apuntemos a los Wachiturros por distintas combinaciones de las primeras 10 posiciones que muestran los resultados del set de datos y analicemos en la posición que queda el sitio en cada caso:
 
@@ -49,6 +48,17 @@ $$
 Como se puede ver por los resultados, el mejor posicionamiento se consigue cuando los 10 sitios nos apuntan pero a su vez es el que mayor costo tiene y comparando con los demás resultados podemos ver que se consiguen muy buenos resultados cuando priorizamos los nodos que tienen menos links de salidas, sobre todo el caso en que solamente con que 4 nodos de los 10 que no tienen salidas nos apuntan figuramos en una posición muy cercana a la lograda comprando todos los links y tienendo un costo bastante menor ya que además esos sitios no son los de posiciones altas lo que se traduce en un menor costo por cada uno.\\
 Por lo tanto, se puede concluír que al momento de decir que sitios nos deben linkear, debemos optar por los que están bien posicionados pero a su vez tienen muy pocas salidas, ya que este último es un factor muy determinante en el algoritmo de PageRank. 
 
+\subsubsection{Hits}
+Si el algoritmo aplicado en la red fuese HITS lo recomendable al cliente sería que negocie con los principales HUBS para que apunten a su sitio. Logrando así rankear mejor en la sección de Autoridades sobre el tema. 
+No le recomendaríamos que negocie con las páginas autoridades ya que dificilmente estas accediesen debido a que de esta manera se estarían restando puntos en el ranking de autoridades.\\
+Por ejemplo en el caso de death penalty habría que negociar con alguno de los 3 principales HUBS: clarkprosecutor.org, faculty.etsu.edu o coramnobis.com. Teniendo en cuenta el costo de cada uno, ya que si el primero costase el doble 
+o mas que el segundo tal vez convendría más negociar con el segundo y tercero.
 
-
+   $$ 
+\begin{bmatrix}
+              		            &      Ranking \\
+ 3\ primeros\ autoridad 		&   	675         \\
+ 3\ primeros\ hub				&     	143   \\
+\end{bmatrix} 
+$$
 
