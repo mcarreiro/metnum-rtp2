@@ -92,28 +92,59 @@ En los últimos dos gráficos podemos observar drásticos descensos del valor de
 
 \clearpage
 
-\subsection{Comparación de Tiempos}
-
-% El siguiente gráfico muestra la evolución del tiempo de computo en función del tamaño de la red para cada algoritmo. La red utilizada en todos los casos es una red estrella en la que todos los nodos (o sitios) apuntan al primero de ellos. Utilizamos este tipo de grafo ya que en c++ es el más rápido y simple de crear teniendo en cuenta además que la forma del grafo no tiene un impacto de eficiencia en los algoritmos sino su tamaño en nodos y aristas es el que cambia el tiempo de ejecución. Por esto no nos pareció pertinente probar distintos tipos de grafos (arboles, completos, bipartito, etc) sin más bien el tamaño de los mismos.
-
-Hicimos unas primeras pruebas con dos grafos, uno chico y uno grande y notamos algo que se repitió en los otros ejemplos que tuvimos: Page Rank supera para grafos grandes ampliamente a Hits, y en grafos chicos se mantienen bastante cerca.
-
+\subsection{Tiempos}
+Inicialmente hicimos pruebas con dos grafos dados por la cátedra, uno chico y uno grande. Los resultados obtenidos fueron los siguientes:
 \begin{itemize}
-\item{HITS (2000 nodos) $=$ 0.694 segundos }
-\item{PAGE RANK (2000 nodos) $=$ 0.104 segundos }
-\item{HITS (685230 nodos) $=$ 751.63 segundos }
-\item{PAGE RANK (685230 nodos) $=$ 89.23 segundos }
+\item{HITS Abortion(2000 nodos) $=$ 0.694 segundos }
+\item{PAGE RANK Abortion(2000 nodos) $=$ 0.104 segundos }
+\item{HITS Berkstan(685230 nodos) $=$ 751.63 segundos }
+\item{PAGE RANK Berkstan(685230 nodos) $=$ 89.23 segundos }
 \end{itemize}
 
-Es por esto que decidimos hacer pruebas más genéricas con grafos generados aleatoriamente para corroborar esta hipótesis
+Esto parecería indicarnos que tanto para grafo grandes como chicos, PageRank es más rápido que HITS. Para corroborar esto pensamos en hacer mas pruebas con instancias de distintos tamaños.\\
+El siguiente gráfico muestra la evolución del tiempo de computo en función del tamaño de la red para cada algoritmo. La red utilizada en todos los casos es una red estrella en la que todos los nodos (o sitios) apuntan al primero de ellos. Utilizamos este tipo de grafo a modo de ejemplo para tener un caso incial de prueba.
+ \begin{figure}[!htb]
+ \begin{center}
+    \includegraphics[scale=0.5]{imagenes/Tiempos.png}
+    \caption{Tiempo de ejecución en función del tamaño de la red}
+    \end{center}
+ \end{figure}
+
+Como esto no alcanza para sacar ninguna conjetura debido a que es para un caso particular pensamos en hacer mas pruebas. Lo que provoca que el cálculo sea mas o menos complejo reside en variables desconocidas por nosotros y la cátedra debido a su complejidad. Por lo tanto pensamos en realizar el siguiente test lo mas genérico posible. Para eso hicimos un script (\textit{testTiempos.cpp}) que que va generando grafos aleatoriamente de un tamaño dado y les aplica los 3 algoritmos midiendo sus tiempos de computo.\\ 
+\clearpage
+Su pseudocógdigo sería:
+\begin{algorithm}
+\caption{TestGrafosRandom}\label{euclid}
+\begin{algorithmic}[1]
+\For{$i\ de\ 10\ a\ 11000$}
+	\State $\textit{grafo = crearGrafoSinAristas(cantidadNodos=i);}$
+	\For{$por\ cada\ nodo\ de\ grafo$}
+		\State $\textit{cantidadAristas = random(entre 0 e i);}$
+		\For{$j\ de\ 0\ a\ cantidadAristas$}
+		\State $\textit{nodo2 = obtenerUnNodoRandom();}$
+		\State $\textit{conectar(nodo,nodo2);}$
+		\EndFor
+	\EndFor	
+	\State $\textit{medirTiempo(pageRank(grafo));}$
+	\State $\textit{medirTiempo(HITS(grafo));}$
+	\State $\textit{medirTiempo(indeg(Grafo));}$
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+El resultado obtenido fue el siguiente:
+ \begin{figure}[!htb]
+ \begin{center}
+    \includegraphics[scale=0.4]{imagenes/grafico_tiempos_sin_filtro.png}
+    \caption{Tiempo de ejecución en función de la cantidad de nodos}
+    \end{center}
+ \end{figure}
 
 
- % \begin{figure}[!htb]
-% \begin{center}
-    % \includegraphics[scale=0.5]{imagenes/Tiempos.png}
-    % \caption{Tiempo de ejecución en función del tamaño de la red}
-    % \end{center}
-% \end{figure}
+
+
+
+
 
 
 
