@@ -3,12 +3,11 @@
 A continuación detallamos cómo fue el desarrollo de los algoritmos presentados previamente
 
 \subsection{Page Rank}
-El algoritmo de PageRank lo dividimos en dos etapas, primero la inicializaci\'on en donde se crea la matriz estoc\'astica y luego la corrida en donde se itera y calcula el pagerank hasta que la diferencia de norma entre los vectores sea menor que la tolerancia establecida.
-
+El desarrollo del algoritmo de PageRank lo dividimos en dos etapas, inicializaci\'on  y calculo de PageRank. Este mismo se basa en el algoritmo original de PageRank mencionado en la sección, con la salvedad de que realizamos optimizaciones que mencionaremos más adelante.\\
+\\
+En la primera etapa de Inicialización se reciben 3 parametros, el valor de c, la cantidad de sitios y un vector con los links que apuntan cada sitio. Primero generamos un vector inicial arbitrario, en nuestro caso elegimos el que recomendaban Bryan y Leise $[3]$ que tiene el primer elemento en 1 y los demás en 0. Luego generamos $M_f$ representandolo con un DOK ya que la matriz resultante en la mayoría de los casos es una matriz dispersa y definiendola con los valores como indica el algoritmo, quedando como resultado una matriz estocástica. Además, como los necesitaremos más adelante y para ahorrar tiempos de cómputo, guardamos los sitios que no apuntan a nadie en un vector de \textit{desconectados}.
 
 Inicializaci\'on:
-
-
 \begin{algorithm}
 \caption{inicializar(c, dim, links)}\label{euclid}
 \begin{algorithmic}[1]
@@ -29,9 +28,9 @@ Inicializaci\'on:
 \end{algorithmic}
 \end{algorithm}
 
-Calculo del PageRank:
+En la segunda etapa del cálculo del PageRank se resuelve mediante el método de las potencias, para esto se utiliza el vector generado en la etapa anterior y se multiplica sucesivamente por la matriz hasta que norma Manhattan entre los vectores de las diferentes iteraciones alcanzan un valor de convergencia. Como el algoritmo requiere sumar valores a todas las posiciones de la matriz para simular la noción de \textit{teletransportación} se pierde la ventaja de que la matriz sea dispersa y por consiguiente todas sus optimizaciones. Por tal motivo, para no perder esta caracteristica de la matriz lo que hacemos es operar con los resultados del vector donde le aplicamos los calculos necesarios sin la necesidad de modificar $M_f$.
 
-
+Cálculo del PageRank:
 \begin{algorithm}
 \caption{calcular()}\label{euclid}
 \begin{algorithmic}[1]
@@ -51,7 +50,7 @@ Calculo del PageRank:
 \end{algorithmic}
 \end{algorithm}
  
-
+\newpage
 \subsection{HITS}
 Este también lo dividimos en la etapa en la etapa de inicialización y de cálculo de sus vectores. En la primera creamos la matriz estocástica e inicializamos los vectores y en la segunda calculamos los mismos hasta que iteremos k veces o la diferencia obtenida sea menor que la tolerancia.
 
