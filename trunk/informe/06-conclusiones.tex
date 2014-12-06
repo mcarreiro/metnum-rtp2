@@ -30,7 +30,7 @@ estrategia propuesta.
 Intentaremos analizar distintas instancias de una red para analizar cual es la estrategia más conveniente a la hora de comprar links para aumentar el PageRank 
 Como explicamos anteriormente, para el algoritmo de PageRank es más importante la calidad del sitio de entrada antes que la cantidad. Por lo tanto para encontrar la mejor estrategia intentaremos ver como se comporta la red para un sitio en especial variando los links que lo apunta. Para esto nos quedaremos con los primeros sitios de mayor pagerank de la red original y entre esos iremos variando entre diferentes conjuntos que tengan diferentes cantidades de links de salida y observando en que posición final queda nuestro sitio \\
 
-Ahora hagamos las siguientes prueba, apuntemos a los Wachiturros por distintas combinaciones de las primeras 10 posiciones que muestran los resultados del set de datos y analicemos en la posición que queda el sitio en cada caso:
+Ahora hagamos las siguientes pruebas, apuntemos a los Wachiturros por distintas combinaciones de las primeras 10 posiciones que muestran los resultados del set de datos y analicemos en la posición que queda el sitio en cada caso:
 
    $$ 
 \begin{bmatrix}
@@ -48,19 +48,20 @@ $$
 Como se puede ver por los resultados, el mejor posicionamiento se consigue cuando los 10 sitios nos apuntan pero a su vez es el que mayor costo tiene y comparando con los demás resultados podemos ver que se consiguen muy buenos resultados cuando priorizamos los nodos que tienen menos links de salidas, sobre todo el caso en que solamente con que 4 nodos de los 10 que no tienen salidas nos apuntan figuramos en una posición muy cercana a la lograda comprando todos los links y tienendo un costo bastante menor ya que además esos sitios no son los de posiciones altas lo que se traduce en un menor costo por cada uno.\\
 Por lo tanto, se puede concluír que al momento de decir que sitios nos deben linkear, debemos optar por los que están bien posicionados pero a su vez tienen muy pocas salidas, ya que este último es un factor muy determinante en el algoritmo de PageRank. 
 
-\subsubsection{Hits}
+\subsection{Hits}
 Si el algoritmo aplicado en la red fuese HITS lo recomendable al cliente sería que negocie con los principales HUBS para que apunten a su sitio. Logrando así rankear mejor en la sección de Autoridades sobre el tema. 
-No le recomendaríamos que negocie con las páginas autoridades ya que dificilmente estas accediesen debido a que de esta manera se estarían restando puntos en el ranking de autoridades.\\
-Por ejemplo en el caso de death penalty habría que negociar con alguno de los 3 principales HUBS: clarkprosecutor.org, faculty.etsu.edu o coramnobis.com. Teniendo en cuenta el costo de cada uno, ya que si el primero costase el doble 
-o mas que el segundo tal vez convendría más negociar con el segundo y tercero.
+No le recomendaríamos que negocie con las páginas autoridades ya que dificilmente estas accediesen debido a que de esta manera se estarían restando puntos en el ranking de autoridades y además esto no lo rankearía significativamente entre las autoridades. \\
+Por ejemplo en el caso de death penalty se podría negociar con los 3 principales HUBS: clarkprosecutor.org, faculty.etsu.edu o coramnobis.com.Y dentro de esta negociación teniendo en cuenta que el primer HUB podría ser más caro que el segundo y el tercero y hasta más que ambos sumados, analizaremos como nos posicionaría que nos apunte el primero y por otro lado el segundo y el tercero juntos.\\
 
-   $$ 
+$$
 \begin{bmatrix}
-              		            &      Ranking \\
- 3\ primeros\ autoridad 		&   	675         \\
- 3\ primeros\ hub				&     	143   \\
+	&      Ranking\ de\ Autoridad \\
+3\ primeros\ autoridad 	&   	675         \\
+3\ primeros\ hub	&     	143   \\
  1er\ hub 						& 		273 	\\
  2do\ y\ 3er\ hub 				& 		215 	\\
 \end{bmatrix} 
 $$
 
+Como supusimos nos posiciona mucho mejor negociar con los HUBS y dentro de ellos si tuviesemos que elegir entre que nos apunte el mejor HUB o el tercer y el segundo juntos habría que optar por la segunda opción ya que nos dejaría mejor rankeados.
+\newpage
